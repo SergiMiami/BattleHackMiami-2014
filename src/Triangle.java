@@ -2,16 +2,17 @@ import java.awt.geom.*;
 import java.awt.*;
 import javax.swing.JComponent;
 
-public class Triangle extends JComponent
+public class Triangle extends JComponent implements BHShape
 {
 	Point2D top;
 	Line2D[] sides = new Line2D[3];
 	Color color;
 	Polygon p;
 	
-	public Triangle(Point2D top, Color color)
+	public Triangle(int x1, int y1, Color color)
 	{
-		this.top=top;
+		
+		top = new Point2D.Double(x1, y1);
 		Point2D.Double bottomLeft = new Point2D.Double(top.getX()-20, top.getY()+20);
 		Point2D.Double bottomRight = new Point2D.Double(top.getX()+20, top.getY()+20);
 		
@@ -60,6 +61,9 @@ public class Triangle extends JComponent
 		return sides[2];
 	}
 	
-	
+	public Color getColor()
+	{
+		return color;
+	}
 
 }
