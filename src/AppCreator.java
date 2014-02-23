@@ -5,8 +5,6 @@ import javax.swing.*;
 
 public class AppCreator extends JApplet {
 	
-	private JPanel mousepanel;
-	
 	public void init(){
 		this.setSize(200, 200);
 		try{
