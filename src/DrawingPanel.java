@@ -31,10 +31,10 @@ public class DrawingPanel extends JPanel {
 	private JButton circleblue;
 	private JButton circlered;
 	private JButton circleyellow;
-	//private List<Object> shapes;
-	private List<MyRectangle> rectangles;
-	private List<MyCircle> circles;
-	private List<Triangle> triangles;
+	private List<Shape> shapes;
+	//private List<MyRectangle> rectangles;
+	//private List<MyCircle> circles;
+	//private List<Triangle> triangles;
 	private Color color;
 	public static int SWITCH;
 	public final int SQUARE = 1;
@@ -46,10 +46,10 @@ public class DrawingPanel extends JPanel {
 	
 	public DrawingPanel(){
 		//paintImage = new BufferedImage(1, 1, BufferedImage.TYPE_3BYTE_BGR);
-		//shapes = new ArrayList<Object>(25);
-		rectangles = new ArrayList<MyRectangle>(25);
-		circles = new ArrayList<MyCircle>(25);
-		triangles = new ArrayList<Triangle>(25);
+		shapes = new ArrayList<Shape>(25);
+		//rectangles = new ArrayList<MyRectangle>(25);
+		//circles = new ArrayList<MyCircle>(25);
+		//triangles = new ArrayList<Triangle>(25);
 		
 		mousepanel = new JPanel();
 		//mousepanel.setBackground(Color.BLUE);
@@ -232,11 +232,11 @@ public class DrawingPanel extends JPanel {
 			width = event.getX() - x1;
 			height = event.getY() - y1;
 			if(SWITCH == TRIANGLE)
-				triangles.add(new Triangle(x1, y1, width, height, color));
+				shapes.add(new Triangle(x1, y1, width, height, color));
 			else if(SWITCH == SQUARE)
-				rectangles.add(new MyRectangle(x1, y1, width, height, color));
+				shapes.add(new MyRectangle(x1, y1, width, height, color));
 			else if(SWITCH == CIRCLE)
-				circles.add(new MyCircle(x1, y1, width, height, color));
+				shapes.add(new MyCircle(x1, y1, width, height, color));
 	
 			repaint();			
 			//statusbar.setText("");		
@@ -250,17 +250,19 @@ public class DrawingPanel extends JPanel {
 		Graphics2D g2 = (Graphics2D)g;
 		//g2.drawImage(paintImage, 0, 0, null);
 
-		     for (MyRectangle rect : rectangles)
+		     for (Shape rect : shapes)
 		          rect.paint(g2);
-		     
+		     /*
 		     for(MyCircle circle : circles)
 		    	 circle.paint(g2);
 		     
 		     for(Triangle triangle : triangles)
-		    	 triangle.paint(g2);		
+		    	 triangle.paint(g2);	
+		    	 
+		    	 	*/
 	}
 	
-	public class MyCircle extends Ellipse2D.Double{
+	public class MyCircle extends Ellipse2D.Double implements Shape{
         private Color color;
 
         public MyCircle(int x, int y, int width, int height, Color color) {
@@ -282,7 +284,7 @@ public class DrawingPanel extends JPanel {
 		
 	}
 	
-	public class MyRectangle extends Rectangle {
+	public class MyRectangle extends Rectangle implements Shape{
 
         private Color color;
 
@@ -303,7 +305,7 @@ public class DrawingPanel extends JPanel {
         }
     }
 	
-	public class Triangle
+	public class Triangle implements Shape
 	{
 		Point2D top;
 		Line2D[] sides = new Line2D[3];

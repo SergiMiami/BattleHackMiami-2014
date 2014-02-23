@@ -31,8 +31,8 @@ public class AppCreator extends JApplet {
 	}
 	
 	private void createGUI(){
-		//DrawingPanel newContentPane = new DrawingPanel();
-		DrawingPanelDeluxe newContentPane = new DrawingPanelDeluxe();
+		DrawingPanel newContentPane = new DrawingPanel();
+		//DrawingPanelDeluxe newContentPane = new DrawingPanelDeluxe();
 		//newContentPane.setOpaque(true);
 		setContentPane(newContentPane);
 	}
