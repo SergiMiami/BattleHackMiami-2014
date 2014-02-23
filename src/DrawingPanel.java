@@ -4,7 +4,9 @@ import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+
 import javax.imageio.ImageIO;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +14,7 @@ import javax.swing.*;
 
 public class DrawingPanel extends JPanel {
 	private JPanel mousepanel;
-	private JLabel statusbar;
+	//private JLabel statusbar;
 	private JButton triangleblue;
 	private JButton triangleyellow;
 	private JButton trianglered;
@@ -22,6 +24,7 @@ public class DrawingPanel extends JPanel {
 	private JButton circleblue;
 	private JButton circlered;
 	private JButton circleyellow;
+	//private List<Object> shapes;
 	private List<MyRectangle> rectangles;
 	private List<MyCircle> circles;
 	private List<Triangle> triangles;
@@ -36,15 +39,16 @@ public class DrawingPanel extends JPanel {
 	
 	public DrawingPanel(){
 		//paintImage = new BufferedImage(1, 1, BufferedImage.TYPE_3BYTE_BGR);
+		//shapes = new ArrayList<Object>(25);
 		rectangles = new ArrayList<MyRectangle>(25);
 		circles = new ArrayList<MyCircle>(25);
 		triangles = new ArrayList<Triangle>(25);
 		
 		mousepanel = new JPanel();
-		mousepanel.setBackground(Color.WHITE);
+		//mousepanel.setBackground(Color.BLUE);
 		add(mousepanel, BorderLayout.CENTER);
-		mousepanel.setPreferredSize(new Dimension(1200, 1200));
-		//mousepanel.setOpaque(false);
+		mousepanel.setPreferredSize(new Dimension(1300, 1300));
+		mousepanel.setOpaque(false);
 		
 		Handlerclass handler = new Handlerclass();
 		mousepanel.addMouseListener(handler);
@@ -56,9 +60,9 @@ public class DrawingPanel extends JPanel {
 		Icon squareyellowIcon = new ImageIcon(getClass().getResource("square_yellow.png"));
 		Icon squareredIcon = new ImageIcon(getClass().getResource("square_red.png"));
 		Icon squareblueIcon = new ImageIcon(getClass().getResource("square_blue.png"));
-		Icon circleyellowIcon = new ImageIcon(getClass().getResource("circle_yellow.png"));
-		Icon circleredIcon = new ImageIcon(getClass().getResource("circle_red.png"));
-		Icon circleblueIcon = new ImageIcon(getClass().getResource("circle_blue.png"));
+		Icon circleyellowIcon = new ImageIcon(getClass().getResource("circles_yellow.png"));
+		Icon circleredIcon = new ImageIcon(getClass().getResource("circles_red.png"));
+		Icon circleblueIcon = new ImageIcon(getClass().getResource("circles_blue.png"));
 		
 		trianglered = new JButton(triangleredIcon);
 		squarered = new  JButton(squareredIcon);
@@ -71,8 +75,8 @@ public class DrawingPanel extends JPanel {
 		squareyellow = new JButton(squareyellowIcon);
 		
 		JPanel buttonPanel = new JPanel();
-		buttonPanel.setBackground(Color.WHITE);
-		buttonPanel.setPreferredSize(new Dimension(1200, 1200));
+		//buttonPanel.setBackground(Color.WHITE);
+		buttonPanel.setPreferredSize(new Dimension(1300, 160));
 		buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
 		
 		buttonPanel.add(trianglered);
@@ -87,8 +91,8 @@ public class DrawingPanel extends JPanel {
 		
 		mousepanel.add(buttonPanel, BorderLayout.NORTH);
 		
-		statusbar = new JLabel("Nothing is happening");
-		mousepanel.add(statusbar, BorderLayout.SOUTH);
+		//statusbar = new JLabel("Nothing is happening");
+		//mousepanel.add(statusbar, BorderLayout.SOUTH);
 
 		squarered.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
@@ -210,7 +214,7 @@ public class DrawingPanel extends JPanel {
 			x1 = event.getX();
 			y1 = event.getY();
 			//repaint();
-			statusbar.setText("Mouse has been pressed");
+			//statusbar.setText("");
 			
 			
 		}
@@ -226,8 +230,9 @@ public class DrawingPanel extends JPanel {
 				rectangles.add(new MyRectangle(x1, y1, width, height, color));
 			else if(SWITCH == CIRCLE)
 				circles.add(new MyCircle(x1, y1, width, height, color));
+	
 			repaint();			
-			statusbar.setText("Mouse has been released with " + width + " " + height);		
+			//statusbar.setText("");		
 		} 
 		
 		
@@ -245,9 +250,7 @@ public class DrawingPanel extends JPanel {
 		    	 circle.paint(g2);
 		     
 		     for(Triangle triangle : triangles)
-		    	 triangle.paint(g2);
-
-		
+		    	 triangle.paint(g2);		
 	}
 	
 	public class MyCircle extends Ellipse2D.Double{
