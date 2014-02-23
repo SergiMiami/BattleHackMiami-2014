@@ -83,8 +83,13 @@ public class DrawingPanel extends JPanel {
 		
 		JPanel buttonPanel = new JPanel();
 		//buttonPanel.setBackground(Color.WHITE);
-		buttonPanel.setPreferredSize(new Dimension(1300, 160));
+		buttonPanel.setPreferredSize(new Dimension(1000, 100));
 		buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
+		
+		JPanel buttonPanel2 = new JPanel();
+		//buttonPanel.setBackground(Color.WHITE);
+		buttonPanel2.setPreferredSize(new Dimension(600, 100));
+		buttonPanel2.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
 		
 		buttonPanel.add(trianglered);
 		buttonPanel.add(triangleblue);
@@ -92,11 +97,13 @@ public class DrawingPanel extends JPanel {
 		buttonPanel.add(squarered);
 		buttonPanel.add(squareblue);
 		buttonPanel.add(squareyellow);
-		buttonPanel.add(circlered);
-		buttonPanel.add(circleblue);
-		buttonPanel.add(circleyellow);
+		
+		buttonPanel2.add(circlered);
+		buttonPanel2.add(circleblue);
+		buttonPanel2.add(circleyellow);
 		
 		mousepanel.add(buttonPanel, BorderLayout.NORTH);
+		mousepanel.add(buttonPanel2, BorderLayout.NORTH);
 		
 		//statusbar = new JLabel("Nothing is happening");
 		//mousepanel.add(statusbar, BorderLayout.SOUTH);

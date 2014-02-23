@@ -88,6 +88,7 @@ public class DrawingPanelDeluxe extends JPanel {
 		Icon diamondorangeIcon = new ImageIcon(getClass().getResource("diamond_orange.png"));
 		Icon diamondgreenIcon = new ImageIcon(getClass().getResource("diamond_green.png"));
 		Icon diamondpurpleIcon = new ImageIcon(getClass().getResource("diamond_purple.png"));
+		Icon paintbrushIcon = new ImageIcon(getClass().getResource("paintbrush.png"));
 	
 		trianglered = new JButton(triangleredIcon);
 		squarered = new  JButton(squareredIcon);
@@ -102,17 +103,17 @@ public class DrawingPanelDeluxe extends JPanel {
 		diamondorange = new JButton(diamondorangeIcon);
 		diamondgreen = new JButton(diamondgreenIcon);
 		diamondpurple = new JButton(diamondpurpleIcon);
-		paintBrush = new JButton("PAINT");
+		paintBrush = new JButton(paintbrushIcon);
 
 		JPanel buttonPanel = new JPanel();
 		//buttonPanel.setBackground(Color.WHITE);
-		buttonPanel.setPreferredSize(new Dimension(1250, 100));
+		buttonPanel.setPreferredSize(new Dimension(900, 100));
 		buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
 		
 		JPanel buttonPanel2 = new JPanel();
 		//buttonPanel2.setBackground(Color.WHITE);
-		buttonPanel2.setPreferredSize(new Dimension(600, 200));
-		//buttonPanel2.setLayout(new BoxLayout(buttonPanel2, BoxLayout.X_AXIS));
+		buttonPanel2.setPreferredSize(new Dimension(1000, 100));
+		buttonPanel2.setLayout(new BoxLayout(buttonPanel2, BoxLayout.X_AXIS));
 		buttonPanel2.setOpaque(false);
 		
 		buttonPanel.add(trianglered);
@@ -121,9 +122,9 @@ public class DrawingPanelDeluxe extends JPanel {
 		buttonPanel.add(squarered);
 		buttonPanel.add(squareblue);
 		buttonPanel.add(squareyellow);
-		buttonPanel.add(circlered);
-		buttonPanel.add(circleblue);
-		buttonPanel.add(circleyellow);
+		buttonPanel2.add(circlered);
+		buttonPanel2.add(circleblue);
+		buttonPanel2.add(circleyellow);
 		
 		buttonPanel2.add(diamondorange);
 		buttonPanel2.add(diamondgreen);
@@ -132,7 +133,7 @@ public class DrawingPanelDeluxe extends JPanel {
 		
 	    mousepanel.add(buttonPanel, BorderLayout.NORTH);
 		
-		mousepanel.add(buttonPanel2, BorderLayout.CENTER);
+		mousepanel.add(buttonPanel2, BorderLayout.NORTH);
 		
 		//statusbar = new JLabel("Nothing is happening");
 		//mousepanel.add(statusbar, BorderLayout.SOUTH);
