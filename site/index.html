@@ -32,21 +32,32 @@
           <div style=" text-align:center" data-controltype="image">
               <img style="width: 75%; height: 75%" src="img/logo.png">
           </div>
+          <div class="divider">
+          <h2>Make A Donation</h2>
+          <p>If you think you have benefited or I have helped you in some way, please consider making a donation. Donations of any size are gratefully accepted. Thank you!</p>
+          <form id="form_paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+  <input type="hidden" name="cmd" value="_donations">
+  <input type="hidden" name="business" value="storetest@jlgdesigns.us">
+  <input type="hidden" name="item_name" value="My Donations Subject">
+  <input type="hidden" name="no_shipping" value="0">
+  <input type="hidden" name="no_note" value="1">
+  <input type="hidden" name="currency_code" value="USD">
+  <input type="hidden" name="tax" value="0">
+  <input type="hidden" name="bn" value="PP-DonationsBF">
+  <label>Amount (USD) : </label><input type="text" name="amount" id="input_amount" width="10" class="text">
+  <input type="submit" name="submit" value="Donate" class="submit"><span id="msg_moreamount" class="icon_warning red" style="display:none;"> PayPal takes $0.35 commission for a $1 donation. Please enter at least $1.35 , thank you!</span><span id="msg_noamount" class="icon_warning red" style="display:none;"> Please enter the amount you wish to donate and try again.</span><span id="msg_activity" style="display:none;"> <img src="images/loader.gif" align="absmiddle"> Transferring to PayPal, please wait...</span>
+</form>
+          
+          
+          </div>
+          
+          
           <a data-role="button" icon data-theme="a" href="#page2" data-mini="true" width:75%>
               Enter
-          </a>
-          
+          </a> 
           
       </div>
-      <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-
-<input type="hidden" name="cmd" value="_s-xclick">
-<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----...[Encrypted message]...-----END PKCS7-----">
-
-<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-
-</form>
+      
 
   </div>
   <div data-role="page" data-control-title="page 2" data-theme="a" id="page2">

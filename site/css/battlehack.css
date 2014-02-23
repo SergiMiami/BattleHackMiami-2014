@@ -8,7 +8,9 @@
 * http://jquery.org/license
 *
 */
-
+#choices{
+	width: 25%;
+}
 
 /* Swatches */
 /* A
@@ -71,7 +73,7 @@
 .ui-body-a select,
 .ui-body-a textarea,
 .ui-body-a button {
-	   font-family: Helvetica, Arial, sans-serif /*{global-font-family}*/;
+	   font-family: 'Schoolbell', helvetica;/*{global-font-family}*/;
 }
 .ui-body-a .ui-link-inherit {
 	color: #ffffff /*{a-body-color}*/;
@@ -145,7 +147,7 @@
 .ui-btn-up-a,
 .ui-btn-hover-a,
 .ui-btn-down-a {
-	   font-family: Helvetica, Arial, sans-serif /*{global-font-family}*/;
+	   font-family: 'Schoolbell', helvetica;/*{global-font-family}*/;
 	text-decoration: none;
 }
 /* B
