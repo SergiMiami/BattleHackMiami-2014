@@ -9,6 +9,37 @@ public class Triangle extends JComponent implements BHShape
 	Color color;
 	Polygon p;
 	
+	public Triangle()
+	{
+		
+	}
+	
+	public Triangle(Color color)
+	{
+		this.color = color;
+	}
+	
+	public Triangle(int x1, int y1)
+	{
+		
+		top = new Point2D.Double(x1, y1);
+		Point2D.Double bottomLeft = new Point2D.Double(top.getX()-20, top.getY()+20);
+		Point2D.Double bottomRight = new Point2D.Double(top.getX()+20, top.getY()+20);
+		
+		Line2D.Double side1 = new Line2D.Double(top, bottomRight);
+		Line2D.Double side2 = new Line2D.Double(bottomRight, bottomLeft);
+		Line2D.Double side3 = new Line2D.Double(bottomLeft, top);
+		
+		sides[0] = side1;
+		sides[1] = side2;
+		sides[2] = side3;
+		
+		int x[] = {(int)top.getX(), (int)bottomLeft.getX(), (int)bottomRight.getX()};
+		int y[] = {(int)top.getY(), (int)bottomLeft.getY(), (int)bottomRight.getY()};
+				
+		p = new Polygon(x, y, 3);
+	}
+	
 	public Triangle(int x1, int y1, Color color)
 	{
 		
@@ -34,15 +65,18 @@ public class Triangle extends JComponent implements BHShape
 
 	public void paintComponent(Graphics g)
 	{
-		Graphics2D g2 = (Graphics2D) g;
-		g2.setColor(color);
-		
-		for(int i = 0; i<sides.length; i++)
+		if(color != null && top != null)
 		{
-			g2.draw(sides[i]);
+			Graphics2D g2 = (Graphics2D) g;
+			g2.setColor(color);
+
+			for(int i = 0; i<sides.length; i++)
+			{
+				g2.draw(sides[i]);
+			}
+
+			g2.fill(p);	
 		}
-		
-		g2.fill(p);	
 	}
 
 

@@ -124,7 +124,14 @@ public class DrawingPanel extends JPanel {
 			else if(source == yellow)
 				color = Color.YELLOW;
 			
-			else if(source == circleButton){}
+			else if(source == circleButton)
+				shape = new Circle();
+			
+			else if(source == triangleButton)
+				shape = new Triangle();
+			
+			else if(source == squareButton)
+				shape = new BHRectangle();
 			
 			
 		}
