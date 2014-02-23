@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.awt.geom.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -12,13 +13,18 @@ import javax.swing.*;
 public class DrawingPanel extends JPanel {
 	private JPanel mousepanel;
 	private JLabel statusbar;
-	private JButton red;
-	private JButton yellow;
-	private JButton blue;
-	private JButton triangleButton;
-	private JButton squareButton;
-	private JButton circleButton;
-	private List<MyRectangle> lstShapes;
+	private JButton triangleblue;
+	private JButton triangleyellow;
+	private JButton trianglered;
+	private JButton squareblue;
+	private JButton squarered;
+	private JButton squareyellow;
+	private JButton circleblue;
+	private JButton circlered;
+	private JButton circleyellow;
+	private List<MyRectangle> rectangles;
+	private List<MyCircle> circles;
+	private List<Triangle> triangles;
 	private Color color;
 	public static int SWITCH;
 	public final int SQUARE = 1;
@@ -30,85 +36,126 @@ public class DrawingPanel extends JPanel {
 	
 	public DrawingPanel(){
 		//paintImage = new BufferedImage(1, 1, BufferedImage.TYPE_3BYTE_BGR);
-		lstShapes = new ArrayList<MyRectangle>(25);
+		rectangles = new ArrayList<MyRectangle>(25);
+		circles = new ArrayList<MyCircle>(25);
+		triangles = new ArrayList<Triangle>(25);
 		
 		mousepanel = new JPanel();
 		mousepanel.setBackground(Color.WHITE);
 		add(mousepanel, BorderLayout.CENTER);
-		mousepanel.setPreferredSize(new Dimension(600, 600));
-		mousepanel.setOpaque(false);
+		mousepanel.setPreferredSize(new Dimension(1200, 1200));
+		//mousepanel.setOpaque(false);
 		
 		Handlerclass handler = new Handlerclass();
 		mousepanel.addMouseListener(handler);
 		mousepanel.addMouseMotionListener(handler);
 		
-		Icon redIcon = new ImageIcon(getClass().getResource("Red.png"));
-		Icon blueIcon = new ImageIcon(getClass().getResource("Blue.png"));
-		Icon yellowIcon =new ImageIcon(getClass().getResource("Yellow.png"));
-		Icon triangleIcon = new ImageIcon(getClass().getResource("Triangle.png"));
-		Icon squareIcon = new ImageIcon(getClass().getResource("Square.png"));
-		Icon circleIcon = new ImageIcon(getClass().getResource("Circle.png"));
+		Icon triangleredIcon = new ImageIcon(getClass().getResource("triangle_red.png"));
+		Icon triangleblueIcon = new ImageIcon(getClass().getResource("triangle_blue.png"));
+		Icon triangleyellowIcon = new ImageIcon(getClass().getResource("triangle_yellow.png"));
+		Icon squareyellowIcon = new ImageIcon(getClass().getResource("square_yellow.png"));
+		Icon squareredIcon = new ImageIcon(getClass().getResource("square_red.png"));
+		Icon squareblueIcon = new ImageIcon(getClass().getResource("square_blue.png"));
+		Icon circleyellowIcon = new ImageIcon(getClass().getResource("circle_yellow.png"));
+		Icon circleredIcon = new ImageIcon(getClass().getResource("circle_red.png"));
+		Icon circleblueIcon = new ImageIcon(getClass().getResource("circle_blue.png"));
 		
-		red = new JButton(redIcon);
-		blue = new JButton(blueIcon);
-		yellow = new JButton(yellowIcon);
-		triangleButton = new JButton(triangleIcon);
-		squareButton = new JButton(squareIcon);
-		circleButton = new JButton(circleIcon);
+		trianglered = new JButton(triangleredIcon);
+		squarered = new  JButton(squareredIcon);
+		circlered = new JButton(circleredIcon);
+		triangleblue = new JButton(triangleblueIcon);
+		squareblue = new JButton(squareblueIcon);
+		circleblue = new JButton(circleblueIcon);
+		circleyellow = new JButton(circleyellowIcon);
+		triangleyellow = new JButton(triangleyellowIcon);
+		squareyellow = new JButton(squareyellowIcon);
 		
 		JPanel buttonPanel = new JPanel();
-		//buttonPanel.setBackground(Color.WHITE);
-		buttonPanel.setPreferredSize(new Dimension(600, 100));
+		buttonPanel.setBackground(Color.WHITE);
+		buttonPanel.setPreferredSize(new Dimension(1200, 1200));
 		buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
 		
-		buttonPanel.add(red);
-		buttonPanel.add(blue);
-		buttonPanel.add(yellow);
-		buttonPanel.add(triangleButton);
-		buttonPanel.add(squareButton);
-		buttonPanel.add(circleButton);
+		buttonPanel.add(trianglered);
+		buttonPanel.add(triangleblue);
+		buttonPanel.add(triangleyellow);
+		buttonPanel.add(squarered);
+		buttonPanel.add(squareblue);
+		buttonPanel.add(squareyellow);
+		buttonPanel.add(circlered);
+		buttonPanel.add(circleblue);
+		buttonPanel.add(circleyellow);
 		
 		mousepanel.add(buttonPanel, BorderLayout.NORTH);
 		
 		statusbar = new JLabel("Nothing is happening");
 		mousepanel.add(statusbar, BorderLayout.SOUTH);
 
-		red.addActionListener(new ActionListener(){
+		squarered.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				color = Color.RED;
+				SWITCH = SQUARE;
+			}
+			
+		});
+
+		trianglered.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				color = Color.RED;
+				SWITCH = TRIANGLE;
 			}
 			
 		});
 		
-		blue.addActionListener(new ActionListener(){
+		circlered.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				color = Color.RED;
+				SWITCH = CIRCLE;
+			}
+			
+		});
+		
+		triangleblue.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				color = Color.BLUE;
-			}
-		});
-		
-		yellow.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				color = Color.YELLOW;
-			}
-		});
-		
-		triangleButton.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
 				SWITCH = TRIANGLE;
 			}
 		});
-		squareButton.addActionListener(new ActionListener(){
+
+		circleblue.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				SWITCH = SQUARE;
-			}
-		});
-		circleButton.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
+				color = Color.BLUE;
 				SWITCH = CIRCLE;
 			}
 		});
-				
+
+		squareblue.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				color = Color.BLUE;
+				SWITCH = SQUARE;
+			}
+		});
 		
+		circleyellow.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				color = Color.YELLOW;
+				SWITCH = CIRCLE;
+			}
+		});
+
+		squareyellow.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				color = Color.YELLOW;
+				SWITCH = SQUARE;
+			}
+		});
+
+		triangleyellow.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				color = Color.YELLOW;
+				SWITCH = TRIANGLE;
+			}
+		});
+				
 	}
 	
 	private class Handlerclass extends MouseAdapter{
@@ -173,7 +220,12 @@ public class DrawingPanel extends JPanel {
 			// TODO Auto-generated method stub
 			width = event.getX() - x1;
 			height = event.getY() - y1;
-			lstShapes.add(new MyRectangle(x1, y1, width, height, color));
+			if(SWITCH == TRIANGLE)
+				triangles.add(new Triangle(x1, y1, width, height, color));
+			else if(SWITCH == SQUARE)
+				rectangles.add(new MyRectangle(x1, y1, width, height, color));
+			else if(SWITCH == CIRCLE)
+				circles.add(new MyCircle(x1, y1, width, height, color));
 			repaint();			
 			statusbar.setText("Mouse has been released with " + width + " " + height);		
 		} 
@@ -185,37 +237,38 @@ public class DrawingPanel extends JPanel {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D)g;
 		//g2.drawImage(paintImage, 0, 0, null);
-		if(SWITCH == SQUARE){
-			
-			//g2.setColor(color);
-			//MyRectangle box = new MyRectangle(x1, y1, x2-x1, y2-y1, color);
-			//g2.fill(box);
-		     for (MyRectangle rect : lstShapes) {
+
+		     for (MyRectangle rect : rectangles)
 		          rect.paint(g2);
-		     }
-		}
+		     
+		     for(MyCircle circle : circles)
+		    	 circle.paint(g2);
+		     
+		     for(Triangle triangle : triangles)
+		    	 triangle.paint(g2);
+
 		
-		else if(SWITCH == CIRCLE){
-			//lstShapes.add(new MyRectangle(x1, y1, width, height, color));
-			//g2.setColor(color);
-			//MyRectangle box = new MyRectangle(x1, y1, x2-x1, y2-y1, color);
-			//g2.fill(box);
-		     for (MyRectangle rect : lstShapes) {
-		          rect.paint(g2);
-		     }
-		}
+	}
+	
+	public class MyCircle extends Ellipse2D.Double{
+        private Color color;
+
+        public MyCircle(int x, int y, int width, int height, Color color) {
+            super(x, y, width, height);
+            this.color = color;
+        }
+
+        public Color getColor() {
+            return color;
+        }
+
+        public void paint(Graphics2D g2d) {
+
+            g2d.setColor(getColor());
+            g2d.fill(this);
+
+        }
 		
-		else{
-			//lstShapes.add(new MyRectangle(x1, y1, width, height, color));
-			//g2.setColor(color);
-			//MyRectangle box = new MyRectangle(x1, y1, x2-x1, y2-y1, color);
-			//g2.fill(box);
-		     for (MyRectangle rect : lstShapes) {
-		          rect.paint(g2);
-		     }
-		}
-		
-		//paintImage = new BufferedImage(600, 600, BufferedImage.TYPE_3BYTE_BGR);
 		
 	}
 	
@@ -239,5 +292,53 @@ public class DrawingPanel extends JPanel {
 
         }
     }
+	
+	public class Triangle
+	{
+		Point2D top;
+		Line2D[] sides = new Line2D[3];
+		Color color;
+		Polygon p;
+
+		public Triangle(int x, int y, int width, int height, Color color)
+		{
+			top = new Point2D.Double(x, y);
+			Point2D.Double bottomLeft = new Point2D.Double(top.getX()-width/2, top.getY()+height);
+			Point2D.Double bottomRight = new Point2D.Double(top.getX()+width/2, top.getY()+height);
+
+			Line2D.Double side1 = new Line2D.Double(top, bottomRight);
+			Line2D.Double side2 = new Line2D.Double(bottomRight, bottomLeft);
+			Line2D.Double side3 = new Line2D.Double(bottomLeft, top);
+
+			sides[0] = side1;
+			sides[1] = side2;
+			sides[2] = side3;
+
+			this.color = color;
+
+			int xs[] = {(int)top.getX(), (int)bottomLeft.getX(), (int)bottomRight.getX()};
+			int ys[] = {(int)top.getY(), (int)bottomLeft.getY(), (int)bottomRight.getY()};
+
+			p = new Polygon(xs, ys, 3);
+		}
+
+		public void paint(Graphics2D g2)
+		{
+			g2.setColor(color);
+
+			for(int i = 0; i<sides.length; i++)
+			{
+				g2.draw(sides[i]);
+			}
+
+			g2.fill(p);	
+		}
+		
+		public Color getColor()
+		{
+			return color;
+		}
+	}
+	
 
 }
