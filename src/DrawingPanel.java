@@ -13,9 +13,13 @@ public class DrawingPanel extends JPanel {
 	private JButton circleButton;
 	private BHShape shape;
 	private Color color;
+	private double x1;
+	private double x2;
 	
 	
 	public DrawingPanel(){
+		
+		x1 = x2 = 0;
 		
 		mousepanel = new JPanel();
 		mousepanel.setBackground(Color.WHITE);
@@ -65,44 +69,69 @@ public class DrawingPanel extends JPanel {
 	private class Handlerclass implements MouseListener, MouseMotionListener{
 
 		@Override
-		public void mouseDragged(MouseEvent arg0) {
+		public void mouseDragged(MouseEvent event) {
 			// TODO Auto-generated method stub
 			
 		}
 
 		@Override
-		public void mouseMoved(MouseEvent arg0) {
+		public void mouseMoved(MouseEvent event) {
 			// TODO Auto-generated method stub
 			
 		}
 
 		@Override
-		public void mouseClicked(MouseEvent arg0) {
+		public void mouseClicked(MouseEvent event) {
+			// TODO Auto-generated method stub
+			if(shape instanceof Circle)
+				shape = new Circle(event.getX(), event.getY(), 10, 10, color);
+			
+			else if(shape instanceof BHRectangle)
+				shape = new BHRectangle(event.getX(), event.getY(), 10, 10, color);
+			
+			else if(shape instanceof Triangle)
+				shape = new Triangle(event.getX(), event.getY(), color);
+			
+			else
+				shape = new Circle(event.getX(), event.getY(), 10, 10, Color.WHITE);
+			
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent event) {
 			// TODO Auto-generated method stub
 			
 		}
 
 		@Override
-		public void mouseEntered(MouseEvent arg0) {
+		public void mouseExited(MouseEvent event) {
 			// TODO Auto-generated method stub
 			
 		}
 
 		@Override
-		public void mouseExited(MouseEvent arg0) {
+		public void mousePressed(MouseEvent event) {
 			// TODO Auto-generated method stub
+			x1 = event.getX();
+			if(shape instanceof Circle)
+				shape = new Circle(event.getX(), event.getY(), 1, 1, color);
+			
+			else if(shape instanceof BHRectangle)
+				shape = new BHRectangle(event.getX(), event.getY(), 1, 1, color);
+			
+			else if(shape instanceof Triangle)
+				shape = new Triangle(event.getX(), event.getY(), color);
+			
+			else
+				shape = new Circle(event.getX(), event.getY(), 1, 1, Color.WHITE);
 			
 		}
 
 		@Override
-		public void mousePressed(MouseEvent arg0) {
+		public void mouseReleased(MouseEvent event) {
 			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void mouseReleased(MouseEvent arg0) {
-			// TODO Auto-generated method stub
+			shape.increaseWidth(event.getX() - x1);
+			((Component) shape).repaint();
 			
 		}
 		
