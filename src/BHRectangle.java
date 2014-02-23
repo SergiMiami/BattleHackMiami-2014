@@ -7,6 +7,8 @@ public class BHRectangle extends Rectangle implements BHShape
 	Color color;
 	int width;
 	int height;
+	int x;
+	int y;
 
 	public BHRectangle()
 	{
@@ -25,12 +27,14 @@ public class BHRectangle extends Rectangle implements BHShape
 		this.height = height;
 	}
 	 **/
-	public BHRectangle(int width, int height, Color color)
+	public BHRectangle(int x, int y, int width, int height, Color color)
 	{
 		super(width, height);
 		this.color = color;
 		this.width = width;
 		this.height = height;
+		this.x = x;
+		this.y = y;
 	}
 
 	public Color getColor()

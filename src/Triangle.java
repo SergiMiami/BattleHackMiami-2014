@@ -13,15 +13,14 @@ public class Triangle extends JComponent implements BHShape
 	{
 		
 	}
-	
+	/**
 	public Triangle(Color color)
 	{
 		this.color = color;
 	}
 	
 	public Triangle(int x1, int y1)
-	{
-		
+	{		
 		top = new Point2D.Double(x1, y1);
 		Point2D.Double bottomLeft = new Point2D.Double(top.getX()-20, top.getY()+20);
 		Point2D.Double bottomRight = new Point2D.Double(top.getX()+20, top.getY()+20);
@@ -38,7 +37,7 @@ public class Triangle extends JComponent implements BHShape
 		int y[] = {(int)top.getY(), (int)bottomLeft.getY(), (int)bottomRight.getY()};
 				
 		p = new Polygon(x, y, 3);
-	}
+	}**/
 	
 	public Triangle(int x1, int y1, Color color)
 	{
@@ -65,7 +64,7 @@ public class Triangle extends JComponent implements BHShape
 
 	public void paintComponent(Graphics g)
 	{
-		if(color != null && top != null)
+		if(color != null)
 		{
 			Graphics2D g2 = (Graphics2D) g;
 			g2.setColor(color);
