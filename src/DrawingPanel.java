@@ -1,31 +1,42 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.*;
 
 public class DrawingPanel extends JPanel {
 	private JPanel mousepanel;
+	private JLabel statusbar;
 	private JButton red;
 	private JButton yellow;
 	private JButton blue;
 	private JButton triangleButton;
 	private JButton squareButton;
 	private JButton circleButton;
-	//private BHShape shape;
+	private List<MyRectangle> lstShapes;
 	private Color color;
 	public static int SWITCH;
 	public final int SQUARE = 1;
 	public final int CIRCLE = 2;
 	public final int TRIANGLE = 3;
-	public int x1, x2, y1,y2;
+	public int x1, y1;
+	public int height, width;
 	
 	
 	public DrawingPanel(){
+		//paintImage = new BufferedImage(1, 1, BufferedImage.TYPE_3BYTE_BGR);
+		lstShapes = new ArrayList<MyRectangle>(25);
 		
 		mousepanel = new JPanel();
 		mousepanel.setBackground(Color.WHITE);
 		add(mousepanel, BorderLayout.CENTER);
 		mousepanel.setPreferredSize(new Dimension(600, 600));
+		mousepanel.setOpaque(false);
 		
 		Handlerclass handler = new Handlerclass();
 		mousepanel.addMouseListener(handler);
@@ -46,7 +57,7 @@ public class DrawingPanel extends JPanel {
 		circleButton = new JButton(circleIcon);
 		
 		JPanel buttonPanel = new JPanel();
-		buttonPanel.setBackground(Color.WHITE);
+		//buttonPanel.setBackground(Color.WHITE);
 		buttonPanel.setPreferredSize(new Dimension(600, 100));
 		buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
 		
@@ -58,6 +69,9 @@ public class DrawingPanel extends JPanel {
 		buttonPanel.add(circleButton);
 		
 		mousepanel.add(buttonPanel, BorderLayout.NORTH);
+		
+		statusbar = new JLabel("Nothing is happening");
+		mousepanel.add(statusbar, BorderLayout.SOUTH);
 
 		red.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
@@ -97,30 +111,39 @@ public class DrawingPanel extends JPanel {
 		
 	}
 	
-	private class Handlerclass implements MouseListener, MouseMotionListener{
+	private class Handlerclass extends MouseAdapter{
 
 		@Override
+		/*
 		public void mouseDragged(MouseEvent event) {
 			// TODO Auto-generated method stub
+            x2=event.getX();
+            y2=event.getY();
+            repaint();
+            statusbar.setText("Mouse is dragging");
 			
 		}
 
 		@Override
+		*/
 		public void mouseMoved(MouseEvent event) {
 			// TODO Auto-generated method stub
 			
 		}
 
-		@Override
+		//@Override
+		/*
 		public void mouseClicked(MouseEvent event) {
 			// TODO Auto-generated method stub
 			x1 = event.getX();
-			x2 = event.getX() + 60;
+			x2 = event.getX() + 20;
 			y1 = event.getY();
-			y2 = event.getY() + 60;
+			y2 = event.getY() + 20;
 			repaint();
+			statusbar.setText("Mouse has been clicked x-axis: " + event.getX() + "and Y:" + event.getY());
 			
 		}
+		*/
 
 		@Override
 		public void mouseEntered(MouseEvent event) {
@@ -139,18 +162,21 @@ public class DrawingPanel extends JPanel {
 			// TODO Auto-generated method stub
 			x1 = event.getX();
 			y1 = event.getY();
-			repaint();
+			//repaint();
+			statusbar.setText("Mouse has been pressed");
+			
 			
 		}
 
 		@Override
 		public void mouseReleased(MouseEvent event) {
 			// TODO Auto-generated method stub
-			x2 = event.getX();
-			y2 = event.getY();
-			repaint();
-			
-		}
+			width = event.getX() - x1;
+			height = event.getY() - y1;
+			lstShapes.add(new MyRectangle(x1, y1, width, height, color));
+			repaint();			
+			statusbar.setText("Mouse has been released with " + width + " " + height);		
+		} 
 		
 		
 	}
@@ -158,22 +184,60 @@ public class DrawingPanel extends JPanel {
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D)g;
-		
+		//g2.drawImage(paintImage, 0, 0, null);
 		if(SWITCH == SQUARE){
-			//g2.fill(color);
-			g2.setColor(color);
-			g2.drawRect(x1, y1, x2, y2);
-			//g2.fill(color);
+			
+			//g2.setColor(color);
+			//MyRectangle box = new MyRectangle(x1, y1, x2-x1, y2-y1, color);
+			//g2.fill(box);
+		     for (MyRectangle rect : lstShapes) {
+		          rect.paint(g2);
+		     }
 		}
 		
 		else if(SWITCH == CIRCLE){
-			g2.drawOval(x1, y1, x2, y2);
+			//lstShapes.add(new MyRectangle(x1, y1, width, height, color));
+			//g2.setColor(color);
+			//MyRectangle box = new MyRectangle(x1, y1, x2-x1, y2-y1, color);
+			//g2.fill(box);
+		     for (MyRectangle rect : lstShapes) {
+		          rect.paint(g2);
+		     }
 		}
 		
-		else{ 
-			g2.drawRect(x1, y1, x2, y2);
+		else{
+			//lstShapes.add(new MyRectangle(x1, y1, width, height, color));
+			//g2.setColor(color);
+			//MyRectangle box = new MyRectangle(x1, y1, x2-x1, y2-y1, color);
+			//g2.fill(box);
+		     for (MyRectangle rect : lstShapes) {
+		          rect.paint(g2);
+		     }
 		}
+		
+		//paintImage = new BufferedImage(600, 600, BufferedImage.TYPE_3BYTE_BGR);
 		
 	}
+	
+	public class MyRectangle extends Rectangle {
+
+        private Color color;
+
+        public MyRectangle(int x, int y, int width, int height, Color color) {
+            super(x, y, width, height);
+            this.color = color;
+        }
+
+        public Color getColor() {
+            return color;
+        }
+
+        public void paint(Graphics2D g2d) {
+
+            g2d.setColor(getColor());
+            g2d.fill(this);
+
+        }
+    }
 
 }

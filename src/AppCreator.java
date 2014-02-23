@@ -6,7 +6,8 @@ import javax.swing.*;
 public class AppCreator extends JApplet {
 	
 	public void init(){
-		this.setSize(200, 200);
+		getContentPane().setBackground(Color.BLUE);
+		this.setSize(600, 600);
 		try{
 			SwingUtilities.invokeAndWait(new Runnable(){
 				
@@ -23,7 +24,7 @@ public class AppCreator extends JApplet {
 	
 	private void createGUI(){
 		DrawingPanel newContentPane = new DrawingPanel();
-		newContentPane.setOpaque(true);
+		//newContentPane.setOpaque(true);
 		setContentPane(newContentPane);
 	}
 	

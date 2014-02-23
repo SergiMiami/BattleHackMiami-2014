@@ -2,7 +2,7 @@ import java.awt.geom.*;
 import java.awt.*;
 import javax.swing.JComponent;
 
-public class Triangle extends JComponent implements BHShape
+public class Triangle extends JComponent
 {
 	Point2D top;
 	Line2D[] sides = new Line2D[3];
