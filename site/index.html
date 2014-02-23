@@ -11,8 +11,15 @@
   <link href="css/jquery.mobile.theme-1.3.1.css" rel="stylesheet">
   <link href="css/battlehack.css" rel="stylesheet">
   <link href="css/jquery.mobile.structure-1.3.1.css" rel="stylesheet">
-
-  
+<link href='http://fonts.googleapis.com/css?family=Schoolbell' rel='stylesheet' type='text/css'>
+ <script src="https://www.paypalobjects.com/js/external/paypal-button.min.js?merchant=RZHZRU4ZVFJGN" 
+    data-button="donate" 
+    data-name="Donation to One Hour Code" 
+    data-amount=".99" 
+    data-shipping="0" 
+    data-tax="0" 
+    data-callback="http://demonchyld.com/hackforkids.index" 	data-env="sandbox"
+></script>
 </head>
 <body>
   <div data-role="page" data-control-title="Home" data-theme="a" id="page1">
@@ -23,12 +30,24 @@
       </div>
       <div data-role="content">
           <div style=" text-align:center" data-controltype="image">
-              <img style="width: 100%; height: 100%" src="img/logo.png">
+              <img style="width: 75%; height: 75%" src="img/logo.png">
           </div>
-          <a data-role="button" data-theme="a" href="#page2">
+          <a data-role="button" icon data-theme="a" href="#page2" data-mini="true" width:75%>
               Enter
           </a>
+          
+          
       </div>
+      <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----...[Encrypted message]...-----END PKCS7-----">
+
+<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+
+</form>
+
   </div>
   <div data-role="page" data-control-title="page 2" data-theme="a" id="page2">
       <div data-theme="a" data-role="header">
@@ -37,7 +56,25 @@
           </h3>
       </div>
       <div data-role="content">
+      <div id="choices">
+      <h3>Color</h3>
+      	<ul data-role="listview" data-theme="a" id="color">
+        	<li>Blue<input name="blue" type="checkbox" value="Blue"></li>
+      		<li>Red<input name="red" type="checkbox" value="Red"></li>
+            <li>Yellow<input name="yellow" type="checkbox" value="Yellow"></li>
+      	</ul>
+        <h3>Shape</h3>
+        <ul data-role="listview" data-theme="a" id="shape">
+        	<li>Circle<input name="circle" type="checkbox" value="Circle"></li>
+      		<li>Square<input name="square" type="checkbox" value="Square"></li>
+            <li>Triangle<input name="triangle" type="checkbox" value="Triangle"></li>
+      	</ul>
+        </br>
+        <input type="submit" value="Make" id="make">
       </div>
+      </div>
+      
+      
       <div data-role="tabbar" data-iconpos="top" data-theme="a">
           <ul>
               <li>
@@ -62,6 +99,7 @@
               </li>
           </ul>
       </div>
+      </div>
   </div>
   <div data-role="page" data-control-title="page 3" data-theme="a" id="page3">
       <div data-theme="a" data-role="header">
@@ -70,8 +108,25 @@
           </h3>
       </div>
       <div data-role="content">
+      <div id="choices">
+      <h3>Color</h3>
+      	<ul data-role="listview" data-theme="a" id="color">
+        	<li>Blue<input name="blue" type="checkbox" value="Blue"></li>
+      		<li>Red<input name="red" type="checkbox" value="Red"></li>
+            <li>Yellow<input name="yellow" type="checkbox" value="Yellow"></li>
+      	</ul>
+        <h3>Shape</h3>
+        <ul data-role="listview" data-theme="a" id="shape">
+        	<li>Circle<input name="circle" type="checkbox" value="Circle"></li>
+      		<li>Square<input name="square" type="checkbox" value="Square"></li>
+            <li>Triangle<input name="triangle" type="checkbox" value="Triangle"></li>
+      	</ul>
+        </br>
+        <input type="submit" value="Make" id="make">
+      </div>
       </div>
       <div data-role="tabbar" data-iconpos="top" data-theme="a">
+      
           <ul>
               <li>
                   <a href="#page1" data-transition="fade" data-theme="" data-icon="home">
@@ -103,6 +158,22 @@
           </h3>
       </div>
       <div data-role="content">
+      <div id="choices">
+      <h3>Color</h3>
+      	<ul data-role="listview" data-theme="a" id="color">
+        	<li>Blue<input name="blue" type="checkbox" value="Blue"></li>
+      		<li>Red<input name="red" type="checkbox" value="Red"></li>
+            <li>Yellow<input name="yellow" type="checkbox" value="Yellow"></li>
+      	</ul>
+        <h3>Shape</h3>
+        <ul data-role="listview" data-theme="a" id="shape">
+        	<li>Circle<input name="circle" type="checkbox" value="Circle"></li>
+      		<li>Square<input name="square" type="checkbox" value="Square"></li>
+            <li>Triangle<input name="triangle" type="checkbox" value="Triangle"></li>
+      	</ul>
+        </br>
+        <input type="submit" value="Make" id="make">
+      </div>
       </div>
       <div data-role="tabbar" data-iconpos="top" data-theme="a">
           <ul>
@@ -131,6 +202,7 @@
   </div>
   <script src="js/jquery-1.9.1.js"></script>
   <script src="js/jquery.mobile-1.3.1.js"></script>
+  <script src="https://www.paypalobjects.com/js/external/paypal-button.min.js"></script>
   <script src="js/codiqa.ext.js"></script>
   <script src="js/battlehack.js"></script>
 </body>
