@@ -1,3 +1,11 @@
+//-----------------------------------------------------------------------------
+// File: AppCreator.java
+//
+// Programmers: Cyle Shapero & Pedro A. Pena
+//
+// Date: February 23, 2014
+//-----------------------------------------------------------------------------
+
 import java.awt.*;
 import javax.swing.*;
 import java.awt.Event.*;
@@ -23,7 +31,8 @@ public class AppCreator extends JApplet {
 	}
 	
 	private void createGUI(){
-		DrawingPanel newContentPane = new DrawingPanel();
+		//DrawingPanel newContentPane = new DrawingPanel();
+		DrawingPanelDeluxe newContentPane = new DrawingPanelDeluxe();
 		//newContentPane.setOpaque(true);
 		setContentPane(newContentPane);
 	}
