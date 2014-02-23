@@ -85,7 +85,7 @@ public class Triangle extends JComponent implements BHShape
 		}
 	}
 	
-	public void increaseWidth(int newWidth)
+	public void increaseWidth(double newWidth)
 	{
 		width += newWidth;
 		points[1] = new Point2D.Double(top.getX()-width/2, top.getY()+width/2*Math.tan(Math.PI/3));

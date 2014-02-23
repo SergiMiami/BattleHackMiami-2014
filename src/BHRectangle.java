@@ -37,7 +37,7 @@ public class BHRectangle extends Rectangle implements BHShape
 		this.y = y;
 	}
 	
-	public void increaseWidth(int newWidth)
+	public void increaseWidth(double newWidth)
 	{
 		width += newWidth;
 		height += newWidth;
