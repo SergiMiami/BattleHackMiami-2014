@@ -2,11 +2,14 @@ package HackForKidsDeluxe;
 
 import java.awt.*;
 import java.awt.geom.*;
+import java.awt.geom.Point2D.Double;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+
 import javax.imageio.ImageIO;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -299,11 +302,48 @@ public class DrawingPanel extends JPanel {
 		private Color color;		
 		Point2D top;
 		Line2D[] sides = new Line2D[4];
+		Polygon p;
 		
 		public MyDiamond(int x, int y, int width, int height, Color color)
 		{
 			top = new Point2D.Double(x, y);
+			Point2D.Double midRight = new Point2D.Double(top.getX() + width/2, top.getY() + height/2);
+			Point2D.Double midLeft = new Point2D.Double(top.getX() - width/2, top.getY() + height/2);
+			Point2D.Double bottom = new Point2D.Double(top.getX(), top.getY() + height);
 			
+			Line2D.Double side1 = new Line2D.Double(midLeft, top);
+			Line2D.Double side2 = new Line2D.Double(top, midRight);
+			Line2D.Double side3 = new Line2D.Double(midLeft, bottom);
+			Line2D.Double side4 = new Line2D.Double(bottom, midRight);
+			
+			sides[0] = side1;
+			sides[1] = side2;
+			sides[2] = side3;
+			sides[3] = side4;
+			
+			this.color = color;
+			
+			int xs[] = {(int)top.getX(), (int)midRight.getX(), (int)bottom.getX(), (int)midLeft.getX()};
+			int ys[] = {(int)top.getY(), (int)midRight.getY(), (int)bottom.getY(), (int)midLeft.getY()};
+			
+			p = new Polygon(xs, ys, 4);
+		}
+		
+		public void paint(Graphics2D g2)
+		{
+			g2.setColor(color);
+
+			for(int i = 0; i<sides.length; i++)
+			{
+				g2.draw(sides[i]);
+			}
+
+			g2.fill(p);	
+		}
+		
+		public Color getColor()
+		{
+			return color;
 		}
 	}	
 	public class Triangle
