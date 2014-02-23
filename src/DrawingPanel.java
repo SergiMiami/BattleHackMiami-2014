@@ -144,22 +144,22 @@ public class DrawingPanel extends JPanel {
 			JButton source;
 			source = (JButton)event.getSource();
 			
-			if(source == red)
+			if(source.equals(red))
 				color = Color.RED;
 			
-			else if(source == blue)
+			else if(source.equals(blue))
 				color = Color.BLUE;
 			
-			else if(source == yellow)
+			else if(source.equals(yellow))
 				color = Color.YELLOW;
 			
-			else if(source == circleButton)
+			else if(source.equals(circleButton))
 				shape = new Circle();
 			
-			else if(source == triangleButton)
+			else if(source.equals(triangleButton))
 				shape = new Triangle();
 			
-			else if(source == squareButton)
+			else if(source.equals(squareButton))
 				shape = new BHRectangle();
 			
 			
