@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------------
 // File: DrawingPanelDeluxe.java
 //
-// Programmers: Cyle Shapero & Pedro A. Pena
+//
 //
 // Date: February 23, 2014
 //-----------------------------------------------------------------------------
@@ -41,10 +41,12 @@ public class DrawingPanelDeluxe extends JPanel {
 	private JButton diamondorange;
 	private JButton diamondgreen;
 	private JButton diamondpurple;
-	private List<MyRectangle> rectangles;
-	private List<MyCircle> circles;
-	private List<Triangle> triangles;
-	private List<MyDiamond> diamonds;
+	private JButton paintBrush;
+	//private List<MyRectangle> rectangles;
+	//private List<MyCircle> circles;
+	//private List<Triangle> triangles;
+	//private List<MyDiamond> diamonds;
+	private List<Shape> shapes;
 	private Color color;
 	public static int SWITCH;
 	public final int SQUARE = 1;
@@ -57,10 +59,11 @@ public class DrawingPanelDeluxe extends JPanel {
 	
 	public DrawingPanelDeluxe(){
 		//paintImage = new BufferedImage(1, 1, BufferedImage.TYPE_3BYTE_BGR);
-		rectangles = new ArrayList<MyRectangle>(25);
-		circles = new ArrayList<MyCircle>(25);
-		triangles = new ArrayList<Triangle>(25);
-		diamonds = new ArrayList<MyDiamond>(25);
+		//rectangles = new ArrayList<MyRectangle>(25);
+		//circles = new ArrayList<MyCircle>(200);
+		//triangles = new ArrayList<Triangle>(25);
+		//diamonds = new ArrayList<MyDiamond>(25);
+		shapes = new ArrayList<Shape>(300);
 		
 		mousepanel = new JPanel();
 		mousepanel.setBackground(Color.WHITE);
@@ -99,6 +102,7 @@ public class DrawingPanelDeluxe extends JPanel {
 		diamondorange = new JButton(diamondorangeIcon);
 		diamondgreen = new JButton(diamondgreenIcon);
 		diamondpurple = new JButton(diamondpurpleIcon);
+		paintBrush = new JButton("PAINT");
 
 		JPanel buttonPanel = new JPanel();
 		//buttonPanel.setBackground(Color.WHITE);
@@ -124,6 +128,7 @@ public class DrawingPanelDeluxe extends JPanel {
 		buttonPanel2.add(diamondorange);
 		buttonPanel2.add(diamondgreen);
 		buttonPanel2.add(diamondpurple);
+		buttonPanel2.add(paintBrush);
 		
 	    mousepanel.add(buttonPanel, BorderLayout.NORTH);
 		
@@ -202,7 +207,7 @@ public class DrawingPanelDeluxe extends JPanel {
 		
 		diamondorange.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				color = Color.ORANGE;
+				color = new Color(255, 140 , 0);
 				SWITCH = DIAMOND;
 			}
 		});
@@ -220,24 +225,33 @@ public class DrawingPanelDeluxe extends JPanel {
 				SWITCH = DIAMOND;
 			}
 		});
+		
+		paintBrush.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				color = Color.BLACK;
+				SWITCH = CIRCLE;
+			}
+		});
 				
 	}
 	
 	private class Handlerclass extends MouseAdapter{
 
 		@Override
-		/*
+		
 		public void mouseDragged(MouseEvent event) {
 			// TODO Auto-generated method stub
-            x2=event.getX();
-            y2=event.getY();
-            repaint();
-            statusbar.setText("Mouse is dragging");
+			if(color == Color.BLACK){
+				x1 = event.getX();
+				y1 = event.getY();
+				shapes.add(new MyCircle(x1, y1, 15, 15, color));
+				repaint();
+			}
 			
 		}
 
 		@Override
-		*/
+		
 		public void mouseMoved(MouseEvent event) {
 			// TODO Auto-generated method stub
 			
@@ -286,13 +300,13 @@ public class DrawingPanelDeluxe extends JPanel {
 			width = event.getX() - x1;
 			height = event.getY() - y1;
 			if(SWITCH == TRIANGLE)
-				triangles.add(new Triangle(x1, y1, width, height, color));
+				shapes.add(new Triangle(x1, y1, width, height, color));
 			else if(SWITCH == SQUARE)
-				rectangles.add(new MyRectangle(x1, y1, width, height, color));
+				shapes.add(new MyRectangle(x1, y1, width, height, color));
 			else if(SWITCH == CIRCLE)
-				circles.add(new MyCircle(x1, y1, width, height, color));
+				shapes.add(new MyCircle(x1, y1, width, height, color));
 			else if(SWITCH == DIAMOND)
-				diamonds.add(new MyDiamond(x1, y1, width, height, color));
+				shapes.add(new MyDiamond(x1, y1, width, height, color));
 			repaint();			
 			//statusbar.setText("Mouse has been released with " + width + " " + height);		
 		} 
@@ -305,9 +319,9 @@ public class DrawingPanelDeluxe extends JPanel {
 		Graphics2D g2 = (Graphics2D)g;
 		//g2.drawImage(paintImage, 0, 0, null);
 
-		     for (MyRectangle rect : rectangles)
+		     for (Shape rect : shapes)
 		          rect.paint(g2);
-		     
+		     /*
 		     for(MyCircle circle : circles)
 		    	 circle.paint(g2);
 		     
@@ -317,10 +331,10 @@ public class DrawingPanelDeluxe extends JPanel {
 		     for(MyDiamond diamond : diamonds)
 		    	 diamond.paint(g2);
 
-		
+		*/
 	}
 	
-	public class MyCircle extends Ellipse2D.Double{
+	public class MyCircle extends Ellipse2D.Double implements Shape{
         private Color color;
 
         public MyCircle(int x, int y, int width, int height, Color color) {
@@ -342,7 +356,7 @@ public class DrawingPanelDeluxe extends JPanel {
 		
 	}
 	
-	public class MyRectangle extends Rectangle {
+	public class MyRectangle extends Rectangle implements Shape {
 
         private Color color;
 
@@ -363,7 +377,7 @@ public class DrawingPanelDeluxe extends JPanel {
         }
     }
 	
-	public class MyDiamond
+	public class MyDiamond implements Shape
 	{
 		private Color color;		
 		Point2D top;
@@ -413,7 +427,7 @@ public class DrawingPanelDeluxe extends JPanel {
 		}
 	}	
 	
-	public class Triangle
+	public class Triangle implements Shape
 	{
 		
 		Point2D top;
@@ -461,5 +475,5 @@ public class DrawingPanelDeluxe extends JPanel {
 		}
 	}
 	
-
 }
+
