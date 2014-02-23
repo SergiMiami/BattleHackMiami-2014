@@ -1,5 +1,3 @@
-package HackForKidsDeluxe;
-
 import java.awt.*;
 import java.awt.geom.*;
 import java.awt.geom.Point2D.Double;
@@ -15,7 +13,12 @@ import java.util.List;
 
 import javax.swing.*;
 
-public class DrawingPanel extends JPanel {
+//import DrawingPanel.Handlerclass;
+//import DrawingPanel.MyCircle;
+//import DrawingPanel.MyRectangle;
+//import DrawingPanel.Triangle;
+
+public class DrawingPanelDeluxe extends JPanel {
 	private JPanel mousepanel;
 	//private JLabel statusbar;
 	private JButton triangleblue;
@@ -44,7 +47,7 @@ public class DrawingPanel extends JPanel {
 	public int height, width;
 	
 	
-	public DrawingPanel(){
+	public DrawingPanelDeluxe(){
 		//paintImage = new BufferedImage(1, 1, BufferedImage.TYPE_3BYTE_BGR);
 		rectangles = new ArrayList<MyRectangle>(25);
 		circles = new ArrayList<MyCircle>(25);
@@ -54,7 +57,7 @@ public class DrawingPanel extends JPanel {
 		mousepanel = new JPanel();
 		mousepanel.setBackground(Color.WHITE);
 		add(mousepanel, BorderLayout.CENTER);
-		mousepanel.setPreferredSize(new Dimension(1200, 1200));
+		mousepanel.setPreferredSize(new Dimension(1300, 1300));
 		mousepanel.setOpaque(false);
 		
 		Handlerclass handler = new Handlerclass();
@@ -90,14 +93,15 @@ public class DrawingPanel extends JPanel {
 		diamondpurple = new JButton(diamondpurpleIcon);
 
 		JPanel buttonPanel = new JPanel();
-		buttonPanel.setBackground(Color.WHITE);
-		buttonPanel.setPreferredSize(new Dimension(1200, 100));
+		//buttonPanel.setBackground(Color.WHITE);
+		buttonPanel.setPreferredSize(new Dimension(1250, 100));
 		buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
 		
 		JPanel buttonPanel2 = new JPanel();
-		buttonPanel2.setBackground(Color.WHITE);
-		buttonPanel2.setPreferredSize(new Dimension(800, 100));
-		buttonPanel2.setLayout(new BoxLayout(buttonPanel2, BoxLayout.X_AXIS));
+		//buttonPanel2.setBackground(Color.WHITE);
+		buttonPanel2.setPreferredSize(new Dimension(600, 200));
+		//buttonPanel2.setLayout(new BoxLayout(buttonPanel2, BoxLayout.X_AXIS));
+		buttonPanel2.setOpaque(false);
 		
 		buttonPanel.add(trianglered);
 		buttonPanel.add(triangleblue);
@@ -113,14 +117,14 @@ public class DrawingPanel extends JPanel {
 		buttonPanel2.add(diamondgreen);
 		buttonPanel2.add(diamondpurple);
 		
-		mousepanel.add(buttonPanel, BorderLayout.NORTH);
+	    mousepanel.add(buttonPanel, BorderLayout.NORTH);
 		
-		mousepanel.add(buttonPanel2, BorderLayout.SOUTH);
+		mousepanel.add(buttonPanel2, BorderLayout.CENTER);
 		
 		//statusbar = new JLabel("Nothing is happening");
 		//mousepanel.add(statusbar, BorderLayout.SOUTH);
 
-		squarered.addActionListener(new ActionListener(){
+	    squarered.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				color = Color.RED;
 				SWITCH = SQUARE;
@@ -185,6 +189,8 @@ public class DrawingPanel extends JPanel {
 				SWITCH = TRIANGLE;
 			}
 		});
+				
+	
 		
 		diamondorange.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
@@ -195,7 +201,7 @@ public class DrawingPanel extends JPanel {
 		
 		diamondpurple.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				color = new Color(230, 230 , 250);
+				color = new Color(128, 0, 128);
 				SWITCH = DIAMOND;
 			}
 		});
@@ -348,6 +354,7 @@ public class DrawingPanel extends JPanel {
 
         }
     }
+	
 	public class MyDiamond
 	{
 		private Color color;		
@@ -397,6 +404,7 @@ public class DrawingPanel extends JPanel {
 			return color;
 		}
 	}	
+	
 	public class Triangle
 	{
 		
