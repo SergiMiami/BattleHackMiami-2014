@@ -17,7 +17,7 @@ import javax.swing.*;
 
 public class DrawingPanel extends JPanel {
 	private JPanel mousepanel;
-	private JLabel statusbar;
+	//private JLabel statusbar;
 	private JButton triangleblue;
 	private JButton triangleyellow;
 	private JButton trianglered;
@@ -117,8 +117,8 @@ public class DrawingPanel extends JPanel {
 		
 		mousepanel.add(buttonPanel2, BorderLayout.SOUTH);
 		
-		statusbar = new JLabel("Nothing is happening");
-		mousepanel.add(statusbar, BorderLayout.SOUTH);
+		//statusbar = new JLabel("Nothing is happening");
+		//mousepanel.add(statusbar, BorderLayout.SOUTH);
 
 		squarered.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
