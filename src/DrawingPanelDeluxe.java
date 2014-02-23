@@ -1,3 +1,11 @@
+//-----------------------------------------------------------------------------
+// File: DrawingPanelDeluxe.java
+//
+// Programmers: Cyle Shapero & Pedro A. Pena
+//
+// Date: February 23, 2014
+//-----------------------------------------------------------------------------
+
 import java.awt.*;
 import java.awt.geom.*;
 import java.awt.geom.Point2D.Double;

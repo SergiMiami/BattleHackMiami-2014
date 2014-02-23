@@ -1,3 +1,11 @@
+//-----------------------------------------------------------------------------
+// File: AppCreator.java
+//
+// Programmers: Cyle Shapero & Pedro A. Pena
+//
+// Date: February 23, 2014
+//-----------------------------------------------------------------------------
+
 import java.awt.*;
 import javax.swing.*;
 import java.awt.Event.*;
