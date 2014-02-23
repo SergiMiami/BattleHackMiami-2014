@@ -9,7 +9,9 @@
 *
 */
 #choices{
-	width: 25%;
+}
+#ui-block-a{
+	width: 30% !important;
 }
 
 /* Swatches */
