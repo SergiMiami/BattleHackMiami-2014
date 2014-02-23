@@ -68,7 +68,7 @@ public class DrawingPanelDeluxe extends JPanel {
 		mousepanel = new JPanel();
 		mousepanel.setBackground(Color.WHITE);
 		add(mousepanel, BorderLayout.CENTER);
-		mousepanel.setPreferredSize(new Dimension(1300, 1300));
+		mousepanel.setPreferredSize(new Dimension(1000, 1000));
 		mousepanel.setOpaque(false);
 		
 		Handlerclass handler = new Handlerclass();

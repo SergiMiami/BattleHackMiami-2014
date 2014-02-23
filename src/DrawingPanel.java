@@ -54,7 +54,7 @@ public class DrawingPanel extends JPanel {
 		mousepanel = new JPanel();
 		//mousepanel.setBackground(Color.BLUE);
 		add(mousepanel, BorderLayout.CENTER);
-		mousepanel.setPreferredSize(new Dimension(1300, 1300));
+		mousepanel.setPreferredSize(new Dimension(1000, 1000));
 		mousepanel.setOpaque(false);
 		
 		Handlerclass handler = new Handlerclass();
@@ -83,13 +83,13 @@ public class DrawingPanel extends JPanel {
 		
 		JPanel buttonPanel = new JPanel();
 		//buttonPanel.setBackground(Color.WHITE);
-		buttonPanel.setPreferredSize(new Dimension(1000, 100));
+		buttonPanel.setPreferredSize(new Dimension(900, 100));
 		buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
 		
 		JPanel buttonPanel2 = new JPanel();
 		//buttonPanel.setBackground(Color.WHITE);
-		buttonPanel2.setPreferredSize(new Dimension(600, 100));
-		buttonPanel2.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
+		buttonPanel2.setPreferredSize(new Dimension(900, 100));
+		buttonPanel2.setLayout(new BoxLayout(buttonPanel2, BoxLayout.X_AXIS));
 		
 		buttonPanel.add(trianglered);
 		buttonPanel.add(triangleblue);
