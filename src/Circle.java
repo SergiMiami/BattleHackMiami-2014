@@ -41,6 +41,12 @@ public class Circle extends Ellipse2D.Double implements BHShape
 		this.w = w;
 		this.h = h;
 	}
+	
+	public void increaseWidth(int newWidth)
+	{
+		w += newWidth;
+		h += newWidth;
+	}
 
 	public Color getColor()
 	{

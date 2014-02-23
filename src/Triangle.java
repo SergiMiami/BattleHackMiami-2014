@@ -6,8 +6,11 @@ public class Triangle extends JComponent implements BHShape
 {
 	Point2D top;
 	Line2D[] sides = new Line2D[3];
+	Point2D[] points = new Point2D[3];
 	Color color;
 	Polygon p;
+	int width = 10;
+	
 	
 	public Triangle()
 	{
@@ -43,8 +46,8 @@ public class Triangle extends JComponent implements BHShape
 	{
 		
 		top = new Point2D.Double(x1, y1);
-		Point2D.Double bottomLeft = new Point2D.Double(top.getX()-20, top.getY()+20);
-		Point2D.Double bottomRight = new Point2D.Double(top.getX()+20, top.getY()+20);
+		Point2D.Double bottomLeft = new Point2D.Double(top.getX()-width/2, top.getY()+width/2*Math.tan(Math.PI/3));
+		Point2D.Double bottomRight = new Point2D.Double(top.getX()+width/2, top.getY()+width/2*Math.tan(Math.PI/3));
 		
 		Line2D.Double side1 = new Line2D.Double(top, bottomRight);
 		Line2D.Double side2 = new Line2D.Double(bottomRight, bottomLeft);
@@ -60,6 +63,10 @@ public class Triangle extends JComponent implements BHShape
 		int y[] = {(int)top.getY(), (int)bottomLeft.getY(), (int)bottomRight.getY()};
 				
 		p = new Polygon(x, y, 3);
+		
+		points[0] = top;
+		points[1] = bottomLeft;
+		points[2] = bottomRight;
 	}
 
 	public void paintComponent(Graphics g)
@@ -76,6 +83,22 @@ public class Triangle extends JComponent implements BHShape
 
 			g2.fill(p);	
 		}
+	}
+	
+	public void increaseWidth(int newWidth)
+	{
+		width += newWidth;
+		points[1] = new Point2D.Double(top.getX()-width/2, top.getY()+width/2*Math.tan(Math.PI/3));
+		points[2] = new Point2D.Double(top.getX()+width/2, top.getY()+width/2*Math.tan(Math.PI/3));
+		
+		sides[0] = new Line2D.Double(top, points[2]);
+		sides[1] = new Line2D.Double(points[2], points[1]);
+		sides[2] = new Line2D.Double(points[1], top);
+		
+		int x[] = {(int)top.getX(), (int)points[1].getX(), (int)points[2].getX()};
+		int y[] = {(int)top.getY(), (int)points[1].getY(), (int)points[2].getY()};
+		
+		p = new Polygon(x, y, 3);		
 	}
 
 

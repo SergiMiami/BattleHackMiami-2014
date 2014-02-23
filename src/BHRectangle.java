@@ -36,6 +36,12 @@ public class BHRectangle extends Rectangle implements BHShape
 		this.x = x;
 		this.y = y;
 	}
+	
+	public void increaseWidth(int newWidth)
+	{
+		width += newWidth;
+		height += newWidth;
+	}
 
 	public Color getColor()
 	{
@@ -44,7 +50,7 @@ public class BHRectangle extends Rectangle implements BHShape
 
 	public void paintComponent(Graphics g)
 	{
-		if(color != null && width != 0 && height != 0)
+		if(color != null)
 		{
 			Graphics2D g2 = (Graphics2D) g;
 			g2.setColor(color);
