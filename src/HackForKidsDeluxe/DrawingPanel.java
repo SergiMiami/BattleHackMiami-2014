@@ -24,14 +24,19 @@ public class DrawingPanel extends JPanel {
 	private JButton circleblue;
 	private JButton circlered;
 	private JButton circleyellow;
+	private JButton diamondorange;
+	private JButton diamondgreen;
+	private JButton diamondpurple;
 	private List<MyRectangle> rectangles;
 	private List<MyCircle> circles;
 	private List<Triangle> triangles;
+	private List<MyDiamond> diamonds;
 	private Color color;
 	public static int SWITCH;
 	public final int SQUARE = 1;
 	public final int CIRCLE = 2;
 	public final int TRIANGLE = 3;
+	public final int DIAMOND = 4;
 	public int x1, y1;
 	public int height, width;
 	
@@ -41,6 +46,7 @@ public class DrawingPanel extends JPanel {
 		rectangles = new ArrayList<MyRectangle>(25);
 		circles = new ArrayList<MyCircle>(25);
 		triangles = new ArrayList<Triangle>(25);
+		diamonds = new ArrayList<MyDiamond>(25);
 		
 		mousepanel = new JPanel();
 		mousepanel.setBackground(Color.WHITE);
@@ -61,6 +67,10 @@ public class DrawingPanel extends JPanel {
 		Icon circleyellowIcon = new ImageIcon(getClass().getResource("circles_yellow.png"));
 		Icon circleredIcon = new ImageIcon(getClass().getResource("circles_red.png"));
 		Icon circleblueIcon = new ImageIcon(getClass().getResource("circles_blue.png"));
+		
+		Icon diamondorangeIcon = new ImageIcon(getClass().getResource("diamond_orange.png"));
+		Icon diamondgreenIcon = new ImageIcon(getClass().getResource("diamond_green.png"));
+		Icon diamondpurpleIcon = new ImageIcon(getClass().getResource("diamond_purple.png"));
 	
 		trianglered = new JButton(triangleredIcon);
 		squarered = new  JButton(squareredIcon);
@@ -72,10 +82,19 @@ public class DrawingPanel extends JPanel {
 		triangleyellow = new JButton(triangleyellowIcon);
 		squareyellow = new JButton(squareyellowIcon);
 		
+		diamondorange = new JButton(diamondorangeIcon);
+		diamondgreen = new JButton(diamondgreenIcon);
+		diamondpurple = new JButton(diamondpurpleIcon);
+
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setBackground(Color.WHITE);
 		buttonPanel.setPreferredSize(new Dimension(1200, 100));
 		buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
+		
+		JPanel buttonPanel2 = new JPanel();
+		buttonPanel2.setBackground(Color.WHITE);
+		buttonPanel2.setPreferredSize(new Dimension(800, 100));
+		buttonPanel2.setLayout(new BoxLayout(buttonPanel2, BoxLayout.X_AXIS));
 		
 		buttonPanel.add(trianglered);
 		buttonPanel.add(triangleblue);
@@ -87,7 +106,13 @@ public class DrawingPanel extends JPanel {
 		buttonPanel.add(circleblue);
 		buttonPanel.add(circleyellow);
 		
+		buttonPanel2.add(diamondorange);
+		buttonPanel2.add(diamondgreen);
+		buttonPanel2.add(diamondpurple);
+		
 		mousepanel.add(buttonPanel, BorderLayout.NORTH);
+		
+		mousepanel.add(buttonPanel2, BorderLayout.SOUTH);
 		
 		statusbar = new JLabel("Nothing is happening");
 		mousepanel.add(statusbar, BorderLayout.SOUTH);
@@ -157,6 +182,27 @@ public class DrawingPanel extends JPanel {
 				SWITCH = TRIANGLE;
 			}
 		});
+		
+		diamondorange.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				color = Color.ORANGE;
+				SWITCH = DIAMOND;
+			}
+		});
+		
+		diamondpurple.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				color = new Color(230, 230 , 250);
+				SWITCH = DIAMOND;
+			}
+		});
+		
+		diamondgreen.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				color = Color.GREEN;
+				SWITCH = DIAMOND;
+			}
+		});
 				
 	}
 	
@@ -212,7 +258,7 @@ public class DrawingPanel extends JPanel {
 			x1 = event.getX();
 			y1 = event.getY();
 			//repaint();
-			statusbar.setText("Mouse has been pressed");
+			//statusbar.setText("Mouse has been pressed");
 			
 			
 		}
@@ -228,8 +274,10 @@ public class DrawingPanel extends JPanel {
 				rectangles.add(new MyRectangle(x1, y1, width, height, color));
 			else if(SWITCH == CIRCLE)
 				circles.add(new MyCircle(x1, y1, width, height, color));
+			else if(SWITCH == DIAMOND)
+				diamonds.add(new MyDiamond(x1, y1, width, height, color));
 			repaint();			
-			statusbar.setText("Mouse has been released with " + width + " " + height);		
+			//statusbar.setText("Mouse has been released with " + width + " " + height);		
 		} 
 		
 		
@@ -248,6 +296,9 @@ public class DrawingPanel extends JPanel {
 		     
 		     for(Triangle triangle : triangles)
 		    	 triangle.paint(g2);
+		     
+		     for(MyDiamond diamond : diamonds)
+		    	 diamond.paint(g2);
 
 		
 	}
