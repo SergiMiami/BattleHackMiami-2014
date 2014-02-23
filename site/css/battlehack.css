@@ -1,6 +1,21 @@
 @charset "utf-8";
 /* CSS Document */
+hfkApplet {
+	
+}
+.ui-btn-inner{
+}
+page{
+	height: 100%;
+}
 
+
+
+
+
+
+
+/*themeroller elements*/
 .ui-bar-a {
 	border: 1px solid #29abe2 /*{a-bar-border}*/;
 	background: #29abe2 /*{a-bar-background-color}*/;
