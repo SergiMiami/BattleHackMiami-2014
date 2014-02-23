@@ -24,6 +24,7 @@ public class DrawingPanel extends JPanel {
 		mousepanel = new JPanel();
 		mousepanel.setBackground(Color.WHITE);
 		add(mousepanel, BorderLayout.CENTER);
+		mousepanel.setPreferredSize(new Dimension(400, 400));
 		
 		Handlerclass handler = new Handlerclass();
 		mousepanel.addMouseListener(handler);
@@ -53,8 +54,8 @@ public class DrawingPanel extends JPanel {
 		buttonPanel.add(squareButton);
 		buttonPanel.add(circleButton);
 		
-		add(buttonPanel, BorderLayout.WEST);
-		
+		mousepanel.add(buttonPanel, BorderLayout.WEST);
+
 		ActionClass action = new ActionClass();
 		red.addActionListener(action);
 		blue.addActionListener(action);
